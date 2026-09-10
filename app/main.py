@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI
+﻿from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse
 import time
 
@@ -9,6 +9,10 @@ app = FastAPI(
 )
 
 START_TIME = time.time()
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)
 
 @app.get("/", response_class=HTMLResponse)
 def root():
