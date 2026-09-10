@@ -4,7 +4,7 @@ import time
 
 app = FastAPI(
     title="CloudKinetics Enterprise Microservice",
-    description="Production-grade FastAPI service running on Azure Container Apps.",
+    description="Azure Portfolio Dashboard featuring completed Exercises 1 through 5.",
     version="1.0.0"
 )
 
@@ -18,31 +18,31 @@ def root():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CloudKinetics Enterprise Dashboard</title>
+        <title>Azure Cloud Engineering Portfolio</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <style>
             :root {
-                --bg-gradient: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f2027, #203a43);
-                --card-bg: rgba(15, 23, 42, 0.75);
-                --accent-cyan: #38bdf8;
+                --bg-gradient: linear-gradient(-45deg, #0b1120, #1e1b4b, #0f172a, #1e293b);
+                --card-bg: rgba(15, 23, 42, 0.8);
+                --accent-blue: #38bdf8;
                 --accent-green: #22c55e;
-                --accent-purple: #a855f7;
+                --accent-purple: #c084fc;
                 --text-main: #f8fafc;
             }
 
             * { box-sizing: border-box; margin: 0; padding: 0; }
 
             body {
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 background: var(--bg-gradient);
                 background-size: 400% 400%;
-                animation: gradientShift 12s ease infinite;
+                animation: gradientShift 15s ease infinite;
                 color: var(--text-main);
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 20px;
+                padding: 30px 20px;
             }
 
             @keyframes gradientShift {
@@ -52,7 +52,7 @@ def root():
             }
 
             .container {
-                max-width: 900px;
+                max-width: 950px;
                 width: 100%;
                 background: var(--card-bg);
                 backdrop-filter: blur(16px);
@@ -75,19 +75,21 @@ def root():
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 padding-bottom: 24px;
                 margin-bottom: 30px;
+                flex-wrap: wrap;
+                gap: 15px;
             }
 
             .title-area h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
                 font-weight: 700;
-                background: linear-gradient(90deg, #ffffff, var(--accent-cyan));
+                background: linear-gradient(90deg, #ffffff, var(--accent-blue));
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
             .title-area p {
                 color: #94a3b8;
-                font-size: 0.95rem;
+                font-size: 1rem;
                 margin-top: 4px;
             }
 
@@ -97,9 +99,9 @@ def root():
                 gap: 8px;
                 background: rgba(34, 197, 94, 0.15);
                 color: var(--accent-green);
-                padding: 8px 16px;
+                padding: 8px 18px;
                 border-radius: 30px;
-                font-size: 0.85rem;
+                font-size: 0.88rem;
                 font-weight: 600;
                 border: 1px solid rgba(34, 197, 94, 0.3);
             }
@@ -119,44 +121,67 @@ def root():
                 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
             }
 
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 16px;
-                margin-bottom: 30px;
-            }
-
-            .card {
-                background: rgba(15, 23, 42, 0.6);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                padding: 20px;
-                border-radius: 16px;
-                transition: transform 0.2s ease, border-color 0.2s ease;
-            }
-
-            .card:hover {
-                transform: translateY(-4px);
-                border-color: var(--accent-cyan);
-            }
-
-            .card-icon {
-                font-size: 1.25rem;
-                color: var(--accent-cyan);
-                margin-bottom: 10px;
-            }
-
-            .card-label {
-                font-size: 0.75rem;
-                color: #64748b;
+            .section-title {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--accent-blue);
+                margin-bottom: 16px;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
             }
 
-            .card-value {
-                font-size: 1.1rem;
+            .exercise-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 16px;
+                margin-bottom: 35px;
+            }
+
+            .ex-card {
+                background: rgba(30, 41, 59, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 20px;
+                border-radius: 16px;
+                transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .ex-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--accent-blue);
+                box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
+            }
+
+            .ex-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .ex-number {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--accent-purple);
+                background: rgba(192, 132, 252, 0.1);
+                padding: 4px 10px;
+                border-radius: 12px;
+            }
+
+            .check-icon {
+                color: var(--accent-green);
+            }
+
+            .ex-title {
+                font-size: 1rem;
                 font-weight: 600;
                 color: #f1f5f9;
-                margin-top: 4px;
+                margin-bottom: 6px;
+            }
+
+            .ex-desc {
+                font-size: 0.82rem;
+                color: #94a3b8;
+                line-height: 1.4;
             }
 
             .actions {
@@ -201,66 +226,77 @@ def root():
                 background: rgba(255, 255, 255, 0.1);
                 color: #fff;
             }
-
-            .interactive-box {
-                margin-top: 30px;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 12px;
-                padding: 16px;
-                font-family: monospace;
-                font-size: 0.85rem;
-                color: var(--accent-cyan);
-                border: 1px solid rgba(255, 255, 255, 0.05);
-            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <div class="title-area">
-                    <h1>Task 5 Microservice</h1>
-                    <p>Azure Container Apps Deployment • FastAPI</p>
+                    <h1>Azure Cloud Engineering Portfolio</h1>
+                    <p>CloudKinetics Technical Exercises (1 – 5 Complete)</p>
                 </div>
                 <div class="status-badge">
                     <span class="pulse-dot"></span>
-                    System Health: 100%
+                    Task 5 Deployed
                 </div>
             </div>
 
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-server"></i></div>
-                    <div class="card-label">Runtime Engine</div>
-                    <div class="card-value">Azure Container Apps</div>
+            <div class="section-title">Completed Azure Track Exercises</div>
+
+            <div class="exercise-grid">
+                <div class="ex-card">
+                    <div class="ex-header">
+                        <span class="ex-number">EXERCISE 1</span>
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+                    </div>
+                    <div class="ex-title">Isolated Networking</div>
+                    <div class="ex-desc">Azure VNet, Subnets, NGINX VM, PostgreSQL Flexible Server & NSG controls.</div>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="card-label">Image Host</div>
-                    <div class="card-value">Azure Container Registry</div>
+
+                <div class="ex-card">
+                    <div class="ex-header">
+                        <span class="ex-number">EXERCISE 2</span>
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+                    </div>
+                    <div class="ex-title">Infrastructure as Code</div>
+                    <div class="ex-desc">Terraform modules, Azure Blob state locking, and automated deployments.</div>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-code-branch"></i></div>
-                    <div class="card-label">CI/CD Automation</div>
-                    <div class="card-value">GitHub Actions</div>
+
+                <div class="ex-card">
+                    <div class="ex-header">
+                        <span class="ex-number">EXERCISE 3</span>
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+                    </div>
+                    <div class="ex-title">Static Web & CDN</div>
+                    <div class="ex-desc">Azure Storage Static Website, Azure CDN Profile, and HTTPS enforcement.</div>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="card-label">Framework</div>
-                    <div class="card-value">FastAPI + Async</div>
+
+                <div class="ex-card">
+                    <div class="ex-header">
+                        <span class="ex-number">EXERCISE 4</span>
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+                    </div>
+                    <div class="ex-title">Serverless Event Pipeline</div>
+                    <div class="ex-desc">Azure Functions, Cosmos DB NoSQL integration, and Application Insights[cite: 1].</div>
+                </div>
+
+                <div class="ex-card" style="border-color: rgba(56, 189, 248, 0.4); background: rgba(14, 165, 233, 0.1);">
+                    <div class="ex-header">
+                        <span class="ex-number">EXERCISE 5</span>
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+                    </div>
+                    <div class="ex-title">Containerized CI/CD</div>
+                    <div class="ex-desc">FastAPI container, Azure Container Registry (ACR), GitHub Actions & Container Apps[cite: 1].</div>
                 </div>
             </div>
 
             <div class="actions">
                 <a href="/docs" class="btn btn-primary">
-                    <i class="fa-solid fa-book-open"></i> Explore Swagger Documentation
+                    <i class="fa-solid fa-book-open"></i> Test Interactive Swagger UI
                 </a>
                 <a href="/health" class="btn btn-secondary" target="_blank">
-                    <i class="fa-solid fa-heart-pulse"></i> Test /health Endpoint
+                    <i class="fa-solid fa-heart-pulse"></i> Live Health Check Endpoint
                 </a>
-            </div>
-
-            <div class="interactive-box" id="live-telemetry">
-                $ > System status: Active. Listening on port 80. Security check: Passed.
             </div>
         </div>
     </body>
@@ -273,6 +309,6 @@ def health_check():
         "status": "healthy",
         "service": "app-task5-service",
         "uptime_seconds": round(time.time() - START_TIME, 2),
-        "region": "Central India",
-        "environment": "Production"
+        "track": "Azure Cloud Engineering Track (Exercises 1-5)",
+        "environment": "Azure Container Apps"
     }
